@@ -1,0 +1,48 @@
+{
+  "$schema": "https://example.invalid/aiflexbot-faq.schema.json",
+  "settings": {
+    "minDistinctHits": 2,
+    "threshold": 5,
+    "ambiguityGap": 2,
+    "cooldown": {
+      "perUserSeconds": 10,
+      "perGroupSeconds": 45
+    },
+    "denyWordsGlobal": [
+      "install",
+      "installer",
+      "setup"
+    ]
+  },
+  "intents": [
+    {
+      "id": "welcome",
+      "title": "Welkom / wat is dit?",
+      "reply": "Welkom! Stel je vraag zo concreet mogelijk. Ik kan FAQ’s beantwoorden; bij twijfel vraag ik door.",
+      "keywords": {
+        "welkom": 3,
+        "wat": 1,
+        "is": 1,
+        "dit": 1,
+        "community": 2,
+        "groep": 2,
+        "server": 2
+      },
+      "denyWords": []
+    },
+    {
+      "id": "rules",
+      "title": "Regels",
+      "reply": "Regels (kort): respectvol blijven, geen spam/scam, geen persoonlijke data, on-topic. Vraag een mod als je twijfelt.",
+      "keywords": {
+        "regels": 4,
+        "rule": 4,
+        "rules": 4,
+        "toegestaan": 2,
+        "mag": 2,
+        "verboden": 2
+      },
+      "denyWords": []
+    }
+  ]
+}
