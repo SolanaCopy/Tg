@@ -20,9 +20,18 @@ const ALLOWED_CHAT_IDS = (process.env.ALLOWED_CHAT_IDS || '')
 const FAQ_FILE = process.env.FAQ_FILE || './faq.intents.json';
 
 // Optional AI fallback (only when no FAQ match)
+// Mode: "openai" (direct OpenAI call) or "openclaw" (call local OpenClaw webhook -> runs gpt via OpenClaw)
 const AI_FALLBACK = String(process.env.AI_FALLBACK || '').trim().toLowerCase() === 'on';
+const AI_MODE = (process.env.AI_MODE || 'openai').trim().toLowerCase();
+
+// Direct OpenAI fallback
 const AI_MODEL = (process.env.AI_MODEL || 'gpt-4.1-nano').trim();
 const OPENAI_API_KEY = (process.env.OPENAI_API_KEY || '').trim();
+
+// OpenClaw webhook fallback (3B)
+const OPENCLAW_HOOK_URL = (process.env.OPENCLAW_HOOK_URL || 'http://127.0.0.1:18789/hooks/agent').trim();
+const OPENCLAW_HOOK_TOKEN = (process.env.OPENCLAW_HOOK_TOKEN || '').trim();
+
 const AI_MAX_TOKENS = Number(process.env.AI_MAX_TOKENS || 120);
 const AI_COOLDOWN_SECONDS = Number(process.env.AI_COOLDOWN_SECONDS || 20);
 
@@ -135,24 +144,55 @@ async function openaiChat({ model, messages, maxTokens }) {
   return String(json?.choices?.[0]?.message?.content || '').trim();
 }
 
-async function aiFallbackAnswer(userText) {
+async function aiFallbackAnswer({ userText, chatId, replyToMessageId }) {
   const system =
     'Je bent Flexbot AI in een Telegram community. Antwoord SUPER kort (max 1 zin). ' +
     'Alleen over Flexbot/XAUUSD/MT5/EA/support/regels/pricing/setup/scams. ' +
     'Als het buiten scope is: zeg kort dat je alleen Flexbot vragen doet. ' +
     'Geen financiële garanties, geen lange uitleg, geen opsommingen.';
 
-  const answer = await openaiChat({
-    model: AI_MODEL,
-    maxTokens: AI_MAX_TOKENS,
-    messages: [
-      { role: 'system', content: system },
-      { role: 'user', content: userText },
-    ],
-  });
+  // Mode 1: direct OpenAI
+  if (AI_MODE === 'openai') {
+    const answer = await openaiChat({
+      model: AI_MODEL,
+      maxTokens: AI_MAX_TOKENS,
+      messages: [
+        { role: 'system', content: system },
+        { role: 'user', content: userText },
+      ],
+    });
+    return answer.replace(/\s*\n\s*/g, ' ').trim();
+  }
 
-  // Force single-line-ish output
-  return answer.replace(/\s*\n\s*/g, ' ').trim();
+  // Mode 2: OpenClaw webhook (3B) -> ask OpenClaw to respond to the Telegram group as a reply.
+  if (AI_MODE === 'openclaw') {
+    if (!OPENCLAW_HOOK_TOKEN) throw new Error('missing_OPENCLAW_HOOK_TOKEN');
+
+    // We return empty here; the OpenClaw hook will deliver the message.
+    await fetch(OPENCLAW_HOOK_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${OPENCLAW_HOOK_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: 'faq-fallback',
+        wakeMode: 'now',
+        deliver: false,
+        model: 'openai/gpt-5.2',
+        thinking: 'low',
+        timeoutSeconds: 60,
+        message:
+          system +
+          '\n\nUser question (reply in 1 zin, Nederlands): ' +
+          userText,
+      }),
+    });
+
+    return '';
+  }
+
+  return '';
 }
 
 function matchFaq({ text, faq }) {
@@ -257,7 +297,8 @@ bot.on('text', async (ctx) => {
 
     // No FAQ match -> optional AI fallback
     if (AI_FALLBACK) {
-      if (!OPENAI_API_KEY) return;
+      if (AI_MODE === 'openai' && !OPENAI_API_KEY) return;
+      if (AI_MODE === 'openclaw' && !OPENCLAW_HOOK_TOKEN) return;
 
       const now = Date.now();
       const lastAi = lastAiByChat.get(String(chatId)) || 0;
@@ -268,13 +309,19 @@ bot.on('text', async (ctx) => {
       const normalized = normalizeText(text);
       if (normalized.split(' ').filter(Boolean).length < 4) return;
 
-      const reply = await aiFallbackAnswer(text);
-      if (!reply) return;
-
-      await ctx.reply(reply, {
-        reply_to_message_id: ctx.message?.message_id,
-        allow_sending_without_reply: true,
+      const reply = await aiFallbackAnswer({
+        userText: text,
+        chatId,
+        replyToMessageId: ctx.message?.message_id,
       });
+
+      // In openclaw mode we may choose to not return text (if OpenClaw delivers separately)
+      if (reply) {
+        await ctx.reply(reply, {
+          reply_to_message_id: ctx.message?.message_id,
+          allow_sending_without_reply: true,
+        });
+      }
 
       lastAiByChat.set(String(chatId), now);
     }
