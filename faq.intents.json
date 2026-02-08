@@ -189,16 +189,70 @@
       "title": "Broker",
       "reply": "Op (bijna) elke MT5 broker waar je XAUUSD kunt traden; als je broker geen XAUUSD heeft, kies een andere MT5 broker.",
       "keywords": {
-        "broker": 7,
-        "brokers": 7,
-        "mt5": 3,
-        "werkt": 3,
-        "werken": 3,
-        "welke": 3,
-        "op": 1,
-        "elke": 2,
-        "xauusd": 2,
+        "broker": 9,
+        "brokers": 9,
+        "mt5": 4,
+        "xauusd": 3,
         "goud": 2
+      },
+      "denyWords": []
+    },
+    {
+      "id": "mt4",
+      "title": "MT4 support",
+      "reply": "Nee — Flexbot werkt op MT5 (niet op MT4).",
+      "keywords": {
+        "mt4": 10,
+        "metatrader4": 8,
+        "meta4": 6,
+        "mt5": 2,
+        "werkt": 2
+      },
+      "denyWords": []
+    },
+    {
+      "id": "settings",
+      "title": "Instellingen aanpassen",
+      "reply": "Meestal niet: de EA is al ingesteld; je hoeft ’m alleen op de XAUUSD chart te plakken en AutoTrading aan te zetten.",
+      "keywords": {
+        "instellingen": 8,
+        "instelling": 6,
+        "aanpassen": 7,
+        "aanpassing": 6,
+        "tweaken": 6,
+        "settings": 6,
+        "config": 5
+      },
+      "denyWords": []
+    },
+    {
+      "id": "multi_accounts",
+      "title": "Meerdere accounts",
+      "reply": "Dat hangt van je plan af; check www.fxflexbot.com of DM @FlexbotDev voor jouw situatie.",
+      "keywords": {
+        "meerdere": 6,
+        "accounts": 8,
+        "account": 7,
+        "2": 2,
+        "twee": 3,
+        "multi": 5
+      },
+      "denyWords": []
+    },
+    {
+      "id": "cancel",
+      "title": "Annuleren / opzeggen",
+      "reply": "Je kunt stoppen door je maandelijkse betaling/subscription stop te zetten; refunds/trial zijn er niet (zie www.fxflexbot.com).",
+      "keywords": {
+        "annuleren": 9,
+        "annuleer": 7,
+        "opzeggen": 9,
+        "opzeg": 7,
+        "stoppen": 6,
+        "cancel": 7,
+        "cancellen": 7,
+        "subscription": 4,
+        "abonnement": 4
       },
       "denyWords": []
     },
