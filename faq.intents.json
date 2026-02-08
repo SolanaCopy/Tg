@@ -173,7 +173,13 @@
         "trial": 6,
         "terug": 3,
         "geld": 2,
-        "refundpolicy": 4
+        "refundpolicy": 4,
+        "money": 4,
+        "back": 4,
+        "garantie": 5,
+        "guarantee": 5,
+        "moneyback": 6,
+        "money-back": 6
       },
       "denyWords": []
     },
@@ -264,7 +270,14 @@
         "cancel": 7,
         "cancellen": 7,
         "subscription": 4,
-        "abonnement": 4
+        "abonnement": 4,
+        "verlengen": 5,
+        "verleng": 4,
+        "verlenging": 4,
+        "niet": 1,
+        "pauzeren": 5,
+        "pauze": 4,
+        "pause": 4
       },
       "denyWords": []
     },
@@ -276,11 +289,16 @@
         "setup": 6,
         "install": 5,
         "installeren": 5,
+        "installatie": 5,
+        "installer": 4,
         "mt5": 4,
         "ea": 3,
         "chart": 2,
         "autotrading": 4,
-        "vps": 5
+        "vps": 5,
+        "hoe": 1,
+        "zet": 2,
+        "plaatsen": 2
       },
       "denyWords": []
     },
