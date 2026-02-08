@@ -17,6 +17,13 @@ Optional:
 - `ALLOWED_CHAT_IDS` – comma-separated list of chat ids. If set, bot only replies there.
 - `FAQ_FILE` – path to intents file, default `./faq.intents.json`
 
+AI fallback (only used when no FAQ match; costs OpenAI credits):
+- `AI_FALLBACK` – set to `on` to enable
+- `OPENAI_API_KEY` – OpenAI key
+- `AI_MODEL` – default `gpt-4.1-nano`
+- `AI_MAX_TOKENS` – default `120`
+- `AI_COOLDOWN_SECONDS` – default `20` (per chat)
+
 ## Run locally
 
 ```bash

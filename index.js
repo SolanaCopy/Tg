@@ -19,6 +19,13 @@ const ALLOWED_CHAT_IDS = (process.env.ALLOWED_CHAT_IDS || '')
 
 const FAQ_FILE = process.env.FAQ_FILE || './faq.intents.json';
 
+// Optional AI fallback (only when no FAQ match)
+const AI_FALLBACK = String(process.env.AI_FALLBACK || '').trim().toLowerCase() === 'on';
+const AI_MODEL = (process.env.AI_MODEL || 'gpt-4.1-nano').trim();
+const OPENAI_API_KEY = (process.env.OPENAI_API_KEY || '').trim();
+const AI_MAX_TOKENS = Number(process.env.AI_MAX_TOKENS || 120);
+const AI_COOLDOWN_SECONDS = Number(process.env.AI_COOLDOWN_SECONDS || 20);
+
 function loadFaq(file) {
   const p = path.resolve(process.cwd(), file);
   const raw = fs.readFileSync(p, 'utf8');
@@ -47,6 +54,9 @@ function nowMs() {
 // Cooldown state (in-memory). For Render this resets on restart; OK for anti-spam.
 const lastByUser = new Map(); // key `${chatId}:${userId}` -> tsMs
 const lastByChat = new Map(); // key `${chatId}` -> tsMs
+
+// Separate cooldown for AI fallback to protect costs
+const lastAiByChat = new Map(); // key `${chatId}` -> tsMs
 
 function cooldownOk({ chatId, userId, perUserMs, perChatMs }) {
   const t = nowMs();
@@ -91,6 +101,58 @@ function hasAnyDenyWord({ tokens, denyWords }) {
   if (!denyWords || !denyWords.length) return false;
   const set = new Set(tokens);
   return denyWords.some((w) => set.has(String(w).toLowerCase()));
+}
+
+async function openaiChat({ model, messages, maxTokens }) {
+  if (!OPENAI_API_KEY) throw new Error('missing_OPENAI_API_KEY');
+  const r = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${OPENAI_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model,
+      messages,
+      max_tokens: Number.isFinite(maxTokens) ? maxTokens : 120,
+      temperature: 0.4,
+    }),
+  });
+
+  const text = await r.text();
+  let json;
+  try {
+    json = JSON.parse(text);
+  } catch {
+    json = { raw: text };
+  }
+
+  if (!r.ok) {
+    const msg = json?.error?.message || json?.message || `openai_http_${r.status}`;
+    throw new Error(msg);
+  }
+
+  return String(json?.choices?.[0]?.message?.content || '').trim();
+}
+
+async function aiFallbackAnswer(userText) {
+  const system =
+    'Je bent Flexbot AI in een Telegram community. Antwoord SUPER kort (max 1 zin). ' +
+    'Alleen over Flexbot/XAUUSD/MT5/EA/support/regels/pricing/setup/scams. ' +
+    'Als het buiten scope is: zeg kort dat je alleen Flexbot vragen doet. ' +
+    'Geen financiële garanties, geen lange uitleg, geen opsommingen.';
+
+  const answer = await openaiChat({
+    model: AI_MODEL,
+    maxTokens: AI_MAX_TOKENS,
+    messages: [
+      { role: 'system', content: system },
+      { role: 'user', content: userText },
+    ],
+  });
+
+  // Force single-line-ish output
+  return answer.replace(/\s*\n\s*/g, ' ').trim();
 }
 
 function matchFaq({ text, faq }) {
@@ -156,6 +218,7 @@ bot.on('text', async (ctx) => {
     const userId = ctx.from?.id;
 
     if (!chatId || !userId) return;
+    if (ctx.from?.is_bot) return;
 
     // If configured, only answer in allowed chats.
     if (ALLOWED_CHAT_IDS.length > 0 && !ALLOWED_CHAT_IDS.includes(String(chatId))) {
@@ -192,7 +255,30 @@ bot.on('text', async (ctx) => {
       return;
     }
 
-    // Ambiguous or no match -> stay silent (this is where you can later add GPT fallback)
+    // No FAQ match -> optional AI fallback
+    if (AI_FALLBACK) {
+      if (!OPENAI_API_KEY) return;
+
+      const now = Date.now();
+      const lastAi = lastAiByChat.get(String(chatId)) || 0;
+      const aiCooldownMs = Math.max(0, AI_COOLDOWN_SECONDS) * 1000;
+      if (aiCooldownMs > 0 && now - lastAi < aiCooldownMs) return;
+
+      // Keep costs down: ignore ultra-short messages
+      const normalized = normalizeText(text);
+      if (normalized.split(' ').filter(Boolean).length < 4) return;
+
+      const reply = await aiFallbackAnswer(text);
+      if (!reply) return;
+
+      await ctx.reply(reply, {
+        reply_to_message_id: ctx.message?.message_id,
+        allow_sending_without_reply: true,
+      });
+
+      lastAiByChat.set(String(chatId), now);
+    }
+
     return;
   } catch (e) {
     console.error('handler_error', e);
