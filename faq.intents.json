@@ -85,7 +85,11 @@
     {
       "id": "website",
       "title": "Website / link",
-      "reply": "Officiële link: www.fxflexbot.com — alles wat daarvan afwijkt is sus.",
+      "reply": [
+        "Officiële link: www.fxflexbot.com — alles wat daarvan afwijkt is sus.",
+        "Alle officiële info/checkout: www.fxflexbot.com.",
+        "Website: www.fxflexbot.com (geen andere links vertrouwen)."
+      ],
       "keywords": {
         "website": 6,
         "site": 5,
@@ -102,7 +106,11 @@
     {
       "id": "pricing",
       "title": "Prijs",
-      "reply": "Flexbot kost 500 USDT eenmalig + 30 USDT/maand — officieel via www.fxflexbot.com.",
+      "reply": [
+        "Flexbot kost 500 USDT eenmalig + 30 USDT/maand — officieel via www.fxflexbot.com.",
+        "Prijs check: 500 USDT one-time + 30 USDT/maand; alles via www.fxflexbot.com.",
+        "500 USDT eenmalig + 30 USDT/maand — de officiële route staat op www.fxflexbot.com."
+      ],
       "keywords": {
         "prijs": 6,
         "cost": 6,
@@ -129,7 +137,11 @@
     {
       "id": "payment_methods",
       "title": "Betaalmethodes",
-      "reply": "Betalen doe je met USDT; checkout/details staan op www.fxflexbot.com.",
+      "reply": [
+        "Betalen doe je met USDT; checkout/details staan op www.fxflexbot.com.",
+        "We accepteren USDT — betaal/check-out via www.fxflexbot.com.",
+        "USDT only; de officiële checkout vind je op www.fxflexbot.com."
+      ],
       "keywords": {
         "betalen": 6,
         "betaling": 6,
@@ -166,7 +178,11 @@
     {
       "id": "refund",
       "title": "Refund / trial",
-      "reply": "Refunds/trial: nee — check www.fxflexbot.com voor de voorwaarden zodat je precies weet waar je aan toe bent.",
+      "reply": [
+        "Refunds/trial: nee — check www.fxflexbot.com voor de voorwaarden zodat je precies weet waar je aan toe bent.",
+        "Geen trial en geen refunds; alles netjes op www.fxflexbot.com.",
+        "Money-back/trial doen we niet; de voorwaarden staan op www.fxflexbot.com."
+      ],
       "keywords": {
         "refund": 6,
         "refunds": 6,
@@ -205,7 +221,11 @@
     {
       "id": "broker",
       "title": "Broker",
-      "reply": "Op (bijna) elke MT5 broker waar je XAUUSD kunt traden; geen XAUUSD bij je broker = andere MT5 broker pakken.",
+      "reply": [
+        "Op (bijna) elke MT5 broker waar je XAUUSD kunt traden; geen XAUUSD bij je broker = andere MT5 broker pakken.",
+        "Zolang je MT5 + XAUUSD hebt zit je goed; anders switch je broker.",
+        "MT5 broker met XAUUSD = ok; ontbreekt XAUUSD, dan heb je de verkeerde broker."
+      ],
       "keywords": {
         "broker": 9,
         "brokers": 9,
@@ -260,7 +280,11 @@
     {
       "id": "cancel",
       "title": "Annuleren / opzeggen",
-      "reply": "Stoppen kan anytime door je maandelijkse subscription te stoppen; refunds/trial doen we niet (zie www.fxflexbot.com).",
+      "reply": [
+        "Stoppen kan anytime door je maandelijkse subscription te stoppen; refunds/trial doen we niet (zie www.fxflexbot.com).",
+        "Opzeggen is simpel: stop je maandelijkse subscription; refunds/trial zijn er niet (www.fxflexbot.com).",
+        "Je kunt altijd stoppen door de maandelijkse betaling stop te zetten; geen refunds/trial (www.fxflexbot.com)."
+      ],
       "keywords": {
         "annuleren": 9,
         "annuleer": 7,
@@ -284,10 +308,15 @@
     {
       "id": "setup",
       "title": "Setup",
-      "reply": "Setup is plug-and-play: EA op XAUUSD chart, AutoTrading aan, klaar (geen gedoe met instellingen).",
+      "reply": [
+        "Setup is plug-and-play: EA op XAUUSD chart, AutoTrading aan, klaar (geen gedoe met instellingen).",
+        "Snel starten: EA op XAUUSD chart plakken + AutoTrading aan = ready.",
+        "Install/setup in 1 zin: XAUUSD chart → EA erop → AutoTrading aan → klaar."
+      ],
       "keywords": {
         "setup": 6,
         "install": 5,
+        "installeer": 6,
         "installeren": 5,
         "installatie": 5,
         "installer": 4,
@@ -305,7 +334,11 @@
     {
       "id": "scams",
       "title": "Scams / veiligheid",
-      "reply": "Safety check: wij DM’en nooit eerst — gebruik alleen www.fxflexbot.com en trap niet in lookalike accounts.",
+      "reply": [
+        "Safety check: wij DM’en nooit eerst — gebruik alleen www.fxflexbot.com en trap niet in lookalike accounts.",
+        "Wij DM’en nooit eerst; only trust www.fxflexbot.com + officiële @FlexbotDev.",
+        "Als iemand jou eerst DM’t met onze naam: scam — block/report en check www.fxflexbot.com."
+      ],
       "keywords": {
         "scam": 6,
         "scams": 6,

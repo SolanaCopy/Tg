@@ -177,7 +177,14 @@ bot.on('text', async (ctx) => {
     const m = matchFaq({ text, faq });
 
     if (m.kind === 'match' && m.intent?.reply) {
-      await ctx.reply(m.intent.reply, {
+      const r = m.intent.reply;
+      const replyText = Array.isArray(r)
+        ? String(r[Math.abs(Number(ctx.message?.message_id || 0)) % r.length] || '')
+        : String(r);
+
+      if (!replyText) return;
+
+      await ctx.reply(replyText, {
         reply_to_message_id: ctx.message?.message_id,
         allow_sending_without_reply: true,
       });
