@@ -112,7 +112,19 @@
         "maand": 2,
         "per": 1
       },
-      "denyWords": []
+      "denyWords": [
+        "live",
+        "realtime",
+        "nu",
+        "bid",
+        "ask",
+        "zien",
+        "chart",
+        "koers",
+        "rate",
+        "quote",
+        "prijsfeed"
+      ]
     },
     {
       "id": "payment_methods",
