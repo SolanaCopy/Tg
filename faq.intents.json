@@ -1,46 +1,144 @@
 {
   "$schema": "https://example.invalid/aiflexbot-faq.schema.json",
   "settings": {
-    "minDistinctHits": 2,
-    "threshold": 5,
+    "minDistinctHits": 1,
+    "threshold": 3,
     "ambiguityGap": 2,
     "cooldown": {
-      "perUserSeconds": 10,
-      "perGroupSeconds": 45
+      "perUserSeconds": 0,
+      "perGroupSeconds": 0
     },
-    "denyWordsGlobal": [
-      "install",
-      "installer",
-      "setup"
-    ]
+    "denyWordsGlobal": []
   },
   "intents": [
     {
       "id": "welcome",
-      "title": "Welkom / wat is dit?",
-      "reply": "Welkom! Stel je vraag zo concreet mogelijk. Ik kan FAQ’s beantwoorden; bij twijfel vraag ik door.",
+      "title": "Welkom (alleen bij echte welkom-intro woorden)",
+      "reply": "Welkom! Stel je vraag zo concreet mogelijk (prijs/setup/rules/scams/etc). Ik ben de FAQ bot.",
       "keywords": {
-        "welkom": 3,
-        "wat": 1,
-        "is": 1,
-        "dit": 1,
-        "community": 2,
+        "welkom": 6,
+        "hi": 2,
+        "hey": 2,
+        "yo": 2,
+        "hello": 2,
+        "community": 3,
+        "groep": 3,
+        "server": 3,
+        "nieuw": 3
+      },
+      "denyWords": []
+    },
+    {
+      "id": "group_purpose",
+      "title": "Waarvoor is de groep bedoeld",
+      "reply": "Deze groep is voor Flexbot: vragen over de EA, XAUUSD setups/trades, regels en support (DM @FlexbotDev als het privé is).",
+      "keywords": {
+        "waarvoor": 5,
+        "bedoeld": 5,
+        "doel": 4,
+        "waarom": 3,
         "groep": 2,
-        "server": 2
+        "community": 2,
+        "hier": 1
+      },
+      "denyWords": []
+    },
+    {
+      "id": "off_topic",
+      "title": "Off-topic toegestaan?",
+      "reply": "Liever on-topic (Flexbot/XAUUSD/EA); beetje off-topic kan, maar geen spam/scam en hou het netjes.",
+      "keywords": {
+        "off": 3,
+        "topic": 3,
+        "offtopic": 4,
+        "off-topic": 4,
+        "of": 1,
+        "praten": 2,
+        "chatten": 2,
+        "mag": 1,
+        "toegestaan": 1
       },
       "denyWords": []
     },
     {
       "id": "rules",
-      "title": "Regels",
-      "reply": "Regels (kort): respectvol blijven, geen spam/scam, geen persoonlijke data, on-topic. Vraag een mod als je twijfelt.",
+      "title": "Regels / gedrag",
+      "reply": "Regels (kort): respectvol blijven, geen spam/scam, geen persoonlijke data, on-topic; bij twijfel vraag een mod of DM @FlexbotDev.",
       "keywords": {
-        "regels": 4,
-        "rule": 4,
-        "rules": 4,
-        "toegestaan": 2,
+        "regels": 6,
+        "regel": 4,
+        "rule": 5,
+        "rules": 5,
+        "gedrag": 6,
+        "respect": 4,
+        "spam": 6,
+        "scam": 6,
+        "promo": 4,
+        "verboden": 5,
+        "toegestaan": 4,
         "mag": 2,
-        "verboden": 2
+        "link": 2,
+        "links": 2
+      },
+      "denyWords": []
+    },
+    {
+      "id": "pricing",
+      "title": "Prijs",
+      "reply": "Prijs: 500 USDT eenmalig + 30 USDT per maand (officieel via www.fxflexbot.com).",
+      "keywords": {
+        "prijs": 6,
+        "cost": 6,
+        "kosten": 6,
+        "price": 6,
+        "usdt": 3,
+        "maand": 2,
+        "per": 1
+      },
+      "denyWords": []
+    },
+    {
+      "id": "refund",
+      "title": "Refund / trial",
+      "reply": "Refunds/trial: nee (check www.fxflexbot.com voor details/voorwaarden).",
+      "keywords": {
+        "refund": 6,
+        "refunds": 6,
+        "trial": 6,
+        "terug": 3,
+        "geld": 2,
+        "refundpolicy": 4
+      },
+      "denyWords": []
+    },
+    {
+      "id": "setup",
+      "title": "Setup",
+      "reply": "Setup is simpel: EA op XAUUSD chart plakken + AutoTrading aan = ready (geen ingewikkelde instellingen).",
+      "keywords": {
+        "setup": 6,
+        "install": 5,
+        "installeren": 5,
+        "mt5": 4,
+        "ea": 3,
+        "chart": 2,
+        "autotrading": 4
+      },
+      "denyWords": []
+    },
+    {
+      "id": "scams",
+      "title": "Scams / veiligheid",
+      "reply": "Safety: wij DM’en nooit als eerste; gebruik alleen www.fxflexbot.com en vertrouw geen lookalike accounts.",
+      "keywords": {
+        "scam": 6,
+        "scams": 6,
+        "oplichter": 6,
+        "fake": 5,
+        "dm": 4,
+        "bericht": 2,
+        "account": 2,
+        "naam": 2
       },
       "denyWords": []
     }
