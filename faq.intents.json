@@ -129,6 +129,25 @@
       "denyWords": []
     },
     {
+      "id": "ftmo",
+      "title": "FTMO / prop firm proof",
+      "reply": "Ja — Flexbot is FTMO‑proof ontworpen (gebruik wel XAUUSD op MT5 en hou je aan de risk rules).",
+      "keywords": {
+        "ftmo": 7,
+        "prop": 5,
+        "profirm": 5,
+        "propfirm": 5,
+        "prop-firm": 5,
+        "prop": 5,
+        "funded": 4,
+        "challenge": 4,
+        "proof": 4,
+        "werkt": 2,
+        "toegestaan": 2
+      },
+      "denyWords": []
+    },
+    {
       "id": "setup",
       "title": "Setup",
       "reply": "Setup is simpel: EA op XAUUSD chart plakken + AutoTrading aan = ready (geen ingewikkelde instellingen).",
@@ -139,7 +158,8 @@
         "mt5": 4,
         "ea": 3,
         "chart": 2,
-        "autotrading": 4
+        "autotrading": 4,
+        "vps": 5
       },
       "denyWords": []
     },
