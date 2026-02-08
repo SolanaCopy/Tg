@@ -14,7 +14,7 @@
     {
       "id": "welcome",
       "title": "Welkom (alleen bij echte welkom-intro woorden)",
-      "reply": "Welkom! Stel je vraag zo concreet mogelijk (prijs/setup/rules/scams/etc). Ik ben de FAQ bot.",
+      "reply": "Welkom — drop je vraag (prijs/setup/rules/scams/etc) en ik fix ‘m; voor analyse pak je Flexbot zelf.",
       "keywords": {
         "welkom": 6,
         "hi": 2,
@@ -31,7 +31,7 @@
     {
       "id": "group_purpose",
       "title": "Waarvoor is de groep bedoeld",
-      "reply": "Deze groep is voor Flexbot: vragen over de EA, XAUUSD setups/trades, regels en support (DM @FlexbotDev als het privé is).",
+      "reply": "Deze groep is voor Flexbot (XAUUSD/MT5): setups/trades, regels en support — privé? DM @FlexbotDev.",
       "keywords": {
         "waarvoor": 5,
         "bedoeld": 5,
@@ -46,7 +46,7 @@
     {
       "id": "off_topic",
       "title": "Off-topic toegestaan?",
-      "reply": "Liever on-topic (Flexbot/XAUUSD/EA); beetje off-topic kan, maar geen spam/scam en hou het netjes.",
+      "reply": "On-topic is king (Flexbot/XAUUSD/EA); beetje off-topic kan, zolang je geen spam/scam dropt en normaal doet.",
       "keywords": {
         "off": 3,
         "topic": 3,
@@ -63,7 +63,7 @@
     {
       "id": "rules",
       "title": "Regels / gedrag",
-      "reply": "Regels (kort): respectvol blijven, geen spam/scam, geen persoonlijke data, on-topic; bij twijfel vraag een mod of DM @FlexbotDev.",
+      "reply": "Regels (kort): respectvol, geen spam/scam, geen persoonlijke data, blijf on-topic; twijfel? ping een mod of DM @FlexbotDev.",
       "keywords": {
         "regels": 6,
         "regel": 4,
@@ -85,7 +85,7 @@
     {
       "id": "website",
       "title": "Website / link",
-      "reply": "Officiële website: www.fxflexbot.com (gebruik alleen deze link).",
+      "reply": "Officiële link: www.fxflexbot.com — alles wat daarvan afwijkt is sus.",
       "keywords": {
         "website": 6,
         "site": 5,
@@ -102,7 +102,7 @@
     {
       "id": "pricing",
       "title": "Prijs",
-      "reply": "Prijs: 500 USDT eenmalig + 30 USDT per maand (officieel via www.fxflexbot.com).",
+      "reply": "Flexbot kost 500 USDT eenmalig + 30 USDT/maand — officieel via www.fxflexbot.com.",
       "keywords": {
         "prijs": 6,
         "cost": 6,
@@ -129,7 +129,7 @@
     {
       "id": "payment_methods",
       "title": "Betaalmethodes",
-      "reply": "Betalen kan met USDT (details/checkout via www.fxflexbot.com).",
+      "reply": "Betalen doe je met USDT; checkout/details staan op www.fxflexbot.com.",
       "keywords": {
         "betalen": 6,
         "betaling": 6,
@@ -147,7 +147,7 @@
     {
       "id": "risk",
       "title": "Risk / risico",
-      "reply": "Risk rules: 0,5% per trade (max 1%) + daily stop −4% (100k) + 30m cooldown na entry.",
+      "reply": "Risk rules (hou ‘m clean): 0,5% per trade (max 1%) + daily stop −4% (100k) + 30m cooldown na entry.",
       "keywords": {
         "risk": 7,
         "risico": 7,
@@ -166,7 +166,7 @@
     {
       "id": "refund",
       "title": "Refund / trial",
-      "reply": "Refunds/trial: nee (check www.fxflexbot.com voor details/voorwaarden).",
+      "reply": "Refunds/trial: nee — check www.fxflexbot.com voor de voorwaarden zodat je precies weet waar je aan toe bent.",
       "keywords": {
         "refund": 6,
         "refunds": 6,
@@ -180,7 +180,7 @@
     {
       "id": "ftmo",
       "title": "FTMO / prop firm proof",
-      "reply": "Ja — Flexbot is FTMO‑proof ontworpen (gebruik wel XAUUSD op MT5 en hou je aan de risk rules).",
+      "reply": "Ja — Flexbot is FTMO‑proof gebouwd; draai ‘m op XAUUSD/MT5 en hou je aan de risk rules.",
       "keywords": {
         "ftmo": 7,
         "prop": 5,
@@ -199,7 +199,7 @@
     {
       "id": "broker",
       "title": "Broker",
-      "reply": "Op (bijna) elke MT5 broker waar je XAUUSD kunt traden; als je broker geen XAUUSD heeft, kies een andere MT5 broker.",
+      "reply": "Op (bijna) elke MT5 broker waar je XAUUSD kunt traden; geen XAUUSD bij je broker = andere MT5 broker pakken.",
       "keywords": {
         "broker": 9,
         "brokers": 9,
@@ -212,7 +212,7 @@
     {
       "id": "mt4",
       "title": "MT4 support",
-      "reply": "Nee — Flexbot werkt op MT5 (niet op MT4).",
+      "reply": "MT4 is helaas een no-go — Flexbot draait op MT5.",
       "keywords": {
         "mt4": 10,
         "metatrader4": 8,
@@ -225,7 +225,7 @@
     {
       "id": "settings",
       "title": "Instellingen aanpassen",
-      "reply": "Meestal niet: de EA is al ingesteld; je hoeft ’m alleen op de XAUUSD chart te plakken en AutoTrading aan te zetten.",
+      "reply": "Meestal niks aanpassen: de EA is al ingesteld — plakken op XAUUSD chart + AutoTrading aan = klaar.",
       "keywords": {
         "instellingen": 8,
         "instelling": 6,
@@ -240,7 +240,7 @@
     {
       "id": "multi_accounts",
       "title": "Meerdere accounts",
-      "reply": "Dat hangt van je plan af; check www.fxflexbot.com of DM @FlexbotDev voor jouw situatie.",
+      "reply": "Meerdere accounts? Hangt van je plan af — check www.fxflexbot.com of DM @FlexbotDev.",
       "keywords": {
         "meerdere": 6,
         "accounts": 8,
@@ -254,7 +254,7 @@
     {
       "id": "cancel",
       "title": "Annuleren / opzeggen",
-      "reply": "Je kunt stoppen door je maandelijkse betaling/subscription stop te zetten; refunds/trial zijn er niet (zie www.fxflexbot.com).",
+      "reply": "Stoppen kan anytime door je maandelijkse subscription te stoppen; refunds/trial doen we niet (zie www.fxflexbot.com).",
       "keywords": {
         "annuleren": 9,
         "annuleer": 7,
@@ -271,7 +271,7 @@
     {
       "id": "setup",
       "title": "Setup",
-      "reply": "Setup is simpel: EA op XAUUSD chart plakken + AutoTrading aan = ready (geen ingewikkelde instellingen).",
+      "reply": "Setup is plug-and-play: EA op XAUUSD chart, AutoTrading aan, klaar (geen gedoe met instellingen).",
       "keywords": {
         "setup": 6,
         "install": 5,
@@ -287,7 +287,7 @@
     {
       "id": "scams",
       "title": "Scams / veiligheid",
-      "reply": "Safety: wij DM’en nooit als eerste; gebruik alleen www.fxflexbot.com en vertrouw geen lookalike accounts.",
+      "reply": "Safety check: wij DM’en nooit eerst — gebruik alleen www.fxflexbot.com en trap niet in lookalike accounts.",
       "keywords": {
         "scam": 6,
         "scams": 6,
