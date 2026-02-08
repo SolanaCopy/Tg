@@ -62,7 +62,7 @@
     },
     {
       "id": "rules",
-      "title": "Regels / gedrag",
+      "title": "Regels / gedrag (community)",
       "reply": "Regels (kort): respectvol, geen spam/scam, geen persoonlijke data, blijf on-topic; twijfel? ping een mod of DM @FlexbotDev.",
       "keywords": {
         "regels": 6,
@@ -79,6 +79,46 @@
         "mag": 2,
         "link": 2,
         "links": 2
+      },
+      "denyWords": [
+        "trade",
+        "traden",
+        "ea",
+        "cpi",
+        "fomc",
+        "nfp",
+        "news",
+        "blackout",
+        "weekend",
+        "market",
+        "closed"
+      ]
+    },
+    {
+      "id": "trading_rules",
+      "title": "Trading rules (weekend/news/when no trade)",
+      "reply": [
+        "Trading rules (kort): geen trades in weekend/market closed; news blackout USD high ±15m (CPI/FOMC/NFP ±30m); daarnaast geldt 30m cooldown na entry.",
+        "EA pauze momenten: weekend/market closed + news blackout (USD high ±15m, CPI/FOMC/NFP ±30m) + cooldown na entry.",
+        "Wanneer geen trades? In weekend/market closed en rond high-impact news (USD ±15m; CPI/FOMC/NFP ±30m) — plus cooldown na entry."
+      ],
+      "keywords": {
+        "trade": 6,
+        "traden": 6,
+        "ea": 4,
+        "wanneer": 3,
+        "niet": 2,
+        "weekend": 7,
+        "market": 5,
+        "closed": 5,
+        "news": 6,
+        "blackout": 7,
+        "cpi": 8,
+        "fomc": 8,
+        "nfp": 8,
+        "regels": 2,
+        "regel": 2,
+        "cooldown": 4
       },
       "denyWords": []
     },
@@ -329,7 +369,20 @@
         "zet": 2,
         "plaatsen": 2
       },
-      "denyWords": []
+      "denyWords": [
+        "wanneer",
+        "niet",
+        "trade",
+        "traden",
+        "cpi",
+        "fomc",
+        "nfp",
+        "news",
+        "blackout",
+        "weekend",
+        "market",
+        "closed"
+      ]
     },
     {
       "id": "scams",
