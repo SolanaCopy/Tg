@@ -115,6 +115,43 @@
       "denyWords": []
     },
     {
+      "id": "payment_methods",
+      "title": "Betaalmethodes",
+      "reply": "Betalen kan met USDT (details/checkout via www.fxflexbot.com).",
+      "keywords": {
+        "betalen": 6,
+        "betaling": 6,
+        "betaal": 6,
+        "betaalmethodes": 7,
+        "payment": 6,
+        "methods": 4,
+        "methodes": 5,
+        "accepteren": 5,
+        "accept": 4,
+        "usdt": 4
+      },
+      "denyWords": []
+    },
+    {
+      "id": "risk",
+      "title": "Risk / risico",
+      "reply": "Risk rules: 0,5% per trade (max 1%) + daily stop −4% (100k) + 30m cooldown na entry.",
+      "keywords": {
+        "risk": 7,
+        "risico": 7,
+        "percentage": 3,
+        "0": 1,
+        "0,5": 5,
+        "0.5": 5,
+        "1%": 4,
+        "max": 3,
+        "daily": 4,
+        "stop": 4,
+        "cooldown": 3
+      },
+      "denyWords": []
+    },
+    {
       "id": "refund",
       "title": "Refund / trial",
       "reply": "Refunds/trial: nee (check www.fxflexbot.com voor details/voorwaarden).",
