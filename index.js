@@ -177,7 +177,10 @@ bot.on('text', async (ctx) => {
     const m = matchFaq({ text, faq });
 
     if (m.kind === 'match' && m.intent?.reply) {
-      await ctx.reply(m.intent.reply);
+      await ctx.reply(m.intent.reply, {
+        reply_to_message_id: ctx.message?.message_id,
+        allow_sending_without_reply: true,
+      });
       markCooldown({ chatId, userId });
       return;
     }
