@@ -315,6 +315,44 @@
         "twee": 3,
         "multi": 5
       },
+      "denyWords": [
+        "trade",
+        "trades",
+        "traden",
+        "open",
+        "opent",
+        "vandaag",
+        "geen",
+        "ea",
+        "mt5",
+        "chart",
+        "setup"
+      ]
+    },
+    {
+      "id": "no_trades",
+      "title": "EA opent geen trades",
+      "reply": [
+        "Als de EA geen trades opent: check AutoTrading aan, juiste XAUUSD chart, markt open (geen weekend/market closed) en geen news blackout/cooldown.",
+        "Geen trades vandaag? Vaak is het: AutoTrading uit, verkeerde chart/symbool, market closed/weekend, of news blackout/cooldown.",
+        "Troubleshoot (kort): AutoTrading aan + XAUUSD chart + markt open; rond high-impact news/weekend/cooldown opent hij ook niet."
+      ],
+      "keywords": {
+        "waarom": 4,
+        "opent": 6,
+        "open": 3,
+        "geen": 2,
+        "trade": 6,
+        "trades": 6,
+        "vandaag": 4,
+        "ea": 5,
+        "account": 2,
+        "autotrading": 5,
+        "markt": 3,
+        "weekend": 3,
+        "blackout": 3,
+        "cooldown": 3
+      },
       "denyWords": []
     },
     {
