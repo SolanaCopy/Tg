@@ -148,6 +148,24 @@
       "denyWords": []
     },
     {
+      "id": "broker",
+      "title": "Broker",
+      "reply": "Op (bijna) elke MT5 broker waar je XAUUSD kunt traden; als je broker geen XAUUSD heeft, kies een andere MT5 broker.",
+      "keywords": {
+        "broker": 7,
+        "brokers": 7,
+        "mt5": 3,
+        "werkt": 3,
+        "werken": 3,
+        "welke": 3,
+        "op": 1,
+        "elke": 2,
+        "xauusd": 2,
+        "goud": 2
+      },
+      "denyWords": []
+    },
+    {
       "id": "setup",
       "title": "Setup",
       "reply": "Setup is simpel: EA op XAUUSD chart plakken + AutoTrading aan = ready (geen ingewikkelde instellingen).",
