@@ -83,6 +83,23 @@
       "denyWords": []
     },
     {
+      "id": "website",
+      "title": "Website / link",
+      "reply": "Officiële website: www.fxflexbot.com (gebruik alleen deze link).",
+      "keywords": {
+        "website": 6,
+        "site": 5,
+        "link": 5,
+        "url": 5,
+        "fxflexbot": 6,
+        "waar": 3,
+        "staat": 3,
+        "officieel": 4,
+        "echte": 3
+      },
+      "denyWords": []
+    },
+    {
       "id": "pricing",
       "title": "Prijs",
       "reply": "Prijs: 500 USDT eenmalig + 30 USDT per maand (officieel via www.fxflexbot.com).",
