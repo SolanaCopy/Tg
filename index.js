@@ -25,15 +25,15 @@ const AI_FALLBACK = String(process.env.AI_FALLBACK || '').trim().toLowerCase() =
 const AI_MODE = (process.env.AI_MODE || 'openai').trim().toLowerCase();
 
 // Direct OpenAI fallback
-const AI_MODEL = (process.env.AI_MODEL || 'gpt-4.1-nano').trim();
+const AI_MODEL = (process.env.AI_MODEL || 'openai/gpt-5.2').trim();
 const OPENAI_API_KEY = (process.env.OPENAI_API_KEY || '').trim();
 
 // OpenClaw webhook fallback (3B)
 const OPENCLAW_HOOK_URL = (process.env.OPENCLAW_HOOK_URL || 'http://127.0.0.1:18789/hooks/agent').trim();
 const OPENCLAW_HOOK_TOKEN = (process.env.OPENCLAW_HOOK_TOKEN || '').trim();
 
-const AI_MAX_TOKENS = Number(process.env.AI_MAX_TOKENS || 120);
-const AI_COOLDOWN_SECONDS = Number(process.env.AI_COOLDOWN_SECONDS || 20);
+const AI_MAX_TOKENS = Number(process.env.AI_MAX_TOKENS || 90);
+const AI_COOLDOWN_SECONDS = Number(process.env.AI_COOLDOWN_SECONDS || 30);
 
 function loadFaq(file) {
   const p = path.resolve(process.cwd(), file);
@@ -305,9 +305,14 @@ bot.on('text', async (ctx) => {
       const aiCooldownMs = Math.max(0, AI_COOLDOWN_SECONDS) * 1000;
       if (aiCooldownMs > 0 && now - lastAi < aiCooldownMs) return;
 
-      // Keep costs down: ignore ultra-short messages
+      // Keep costs down: ignore ultra-short + non-question messages
       const normalized = normalizeText(text);
-      if (normalized.split(' ').filter(Boolean).length < 4) return;
+      const words = normalized.split(' ').filter(Boolean);
+      if (words.length < 4) return;
+
+      const questionWords = new Set(['hoe', 'waarom', 'wat', 'waar', 'wanneer', 'welke', 'kan', 'mag', 'moet']);
+      const looksLikeQuestion = text.includes('?') || words.some((w) => questionWords.has(w));
+      if (!looksLikeQuestion) return;
 
       const reply = await aiFallbackAnswer({
         userText: text,

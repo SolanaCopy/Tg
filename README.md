@@ -20,9 +20,9 @@ Optional:
 AI fallback (only used when no FAQ match; costs OpenAI credits):
 - `AI_FALLBACK` – set to `on` to enable
 - `OPENAI_API_KEY` – OpenAI key
-- `AI_MODEL` – default `gpt-4.1-nano`
-- `AI_MAX_TOKENS` – default `120`
-- `AI_COOLDOWN_SECONDS` – default `20` (per chat)
+- `AI_MODEL` – default `openai/gpt-5.2`
+- `AI_MAX_TOKENS` – default `90`
+- `AI_COOLDOWN_SECONDS` – default `30` (per chat)
 
 ## Run locally
 
